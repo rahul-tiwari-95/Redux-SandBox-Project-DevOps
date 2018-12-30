@@ -32,8 +32,25 @@ class Counter extends Component {
                 <CounterOutput value={this.props.ctr} />
                 <CounterControl label="Increment" clicked={this.props.onIncrementCounter} />
                 <CounterControl label="Decrement" clicked={this.props.onDecrementCounter}  />
-                <CounterControl label="Add 5" clicked={this.props.onAdd}  />
+                <CounterControl label="Add 500" clicked={this.props.onAdd}  />
                 <CounterControl label="Subtract 5" clicked={this.props.onSub}  />
+                <hr/>
+
+                <button name="Result" onClick={this.props.onStore} >Store Result </button>
+                <ul>
+                    {this.props.storedResults.map(tempResults =>{
+
+                            <li key={tempResults.id} onClick={this.props.onDelete}> 
+                                
+                                {tempResults.value}
+                            </li>
+                            
+
+                    })}
+                    <li>
+                        <p>Hey</p></li>
+                </ul>
+                    
             </div>
         );
     }
@@ -43,7 +60,8 @@ const mapStateToProps = state =>{
 
     return{
         
-        ctr: state.counter
+        ctr: state.counter,
+        storedResults: state.results
 
     };
 };
@@ -53,12 +71,14 @@ const mapDispatchToProps = dispatch =>{
     return { //Its a JS Styled Object. Use , and not ;
         onIncrementCounter: () =>{dispatch({type: 'INCREMENT_DISPATCH'})},//Declaring dispatch function
         onDecrementCounter: () =>{dispatch({type: 'DECREMENT_DISPATCH'})},
-        onAdd: () =>{dispatch({type: 'ADD_DISPATCH'})},
+        onAdd: () =>{dispatch({type: 'ADD_DISPATCH' , value:500})},
         onSub: () =>{dispatch({type: 'SUB_DISPATCH'})},
+        onStore: () =>{dispatch({type: 'STORE_DISPATCH'})},
+        onDelete: () =>{dispatch({type: 'DELETE_DISPATCH'})},
       
 
 
-    }
+    };
 };
 
 
