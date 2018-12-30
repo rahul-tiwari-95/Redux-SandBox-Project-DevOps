@@ -53,6 +53,15 @@ const reducer = (state = initState , action)=>{
                     counter: state.counter -5
                 }
 
+        case 'DELETE_DISPATCH':
+                
+                const updatedArray = state.results.filter(el => el.id !== action.resultID);
+                return{
+                    ...state,
+                    results: updatedArray
+
+                }
+
     }
 
 
